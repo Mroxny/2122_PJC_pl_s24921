@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/maciu/Desktop/2122_PJC_pl_s24921/cmake-build-debug"
+			"value" : "D:/Projects/Custom Projects/2122_PJC_pl_s24921/cmake-build-debug"
 		},
 		{
 			"name" : "2122_PJC_pl_s24921_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/maciu/Desktop/2122_PJC_pl_s24921"
+			"value" : "D:/Projects/Custom Projects/2122_PJC_pl_s24921"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/maciu/Desktop/2122_PJC_pl_s24921/cmake-build-debug"
+			"value" : "d:/Projects/Custom Projects/2122_PJC_pl_s24921/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -659,7 +659,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/maciu/Desktop/2122_PJC_pl_s24921"
+			"value" : "D:/Projects/Custom Projects/2122_PJC_pl_s24921"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",

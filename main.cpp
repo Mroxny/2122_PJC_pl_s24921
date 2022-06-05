@@ -1,37 +1,43 @@
 #include <iostream>
+#include <functional>
 #include "creatures.hpp"
 #include "engine.hpp"
 
-auto loadMainMenu() -> void;
+auto fun() -> void {
+    std::cout<<"Fun3\n";
+}
+
+
 
 
 int main() {
     creatures::special_power s = creatures::special_power("czesc", 10);
-    auto a = creatures::creature("Zbyszek", creatures::creature_type::stone, 1, 15, 100, s, 100);
-    auto b = creatures::creature("Jedrek", creatures::creature_type::stone, 1, 40, 100, s, 100);
-
-    std::cout<<b.health<<"\n";
-    std::string res = a.attack(b)?"Attack succes":"Failed";
-    std::cout<< res<<"\n" ;
-    std::cout<<b.health<<"\n";
+    auto a = creatures::creature("Zbyszek", creatures::creature_type::stone, 10, 15, 100, s, 100);
+    auto b = creatures::creature("Jedrek", creatures::creature_type::stone, 25, 40, 100, s, 100);
 
 
+    std::cout<<"Creature 1, Health:"<<a.health<<" Skill:"<<a.skill<<"\n";
+    std::cout<<"Creature 2, Health:"<<b.health<<" Skill:"<<b.skill<<"\n";
 
-    //loadMainMenu();
+    std::string res1 = a.attack(b)?"Attack 1 Succes":" Attack 1 Failed";
+    std::string res2 = b.attack(a)?"Attack 2 Succes":" Attack 2 Failed";
+
+    std::cout<<"Creature 1 attacking Creature 2: "<< res1 <<"\n" ;
+    std::cout<<"Creature 2 attacking Creature 1: "<< res2 <<"\n" ;
+
+
+    std::cout<<"Creature 1, Health:"<<a.health<<" Skill:"<<a.skill<<"\n";
+    std::cout<<"Creature 2, Health:"<<b.health<<" Skill:"<<b.skill<<"\n";
+
+    auto actions = std::vector<std::function<void()>>{
+        []()->void { std::cout<<"Fun1\n";},
+        []()->void { std::cout<<"Fun2\n";},
+        fun
+        };
+
+
+    engine::displayPanel("test",actions);
 
     return 0;
 }
 
-
-auto loadMainMenu() -> void{
-
-
-
-
-    int action = 0;
-    std::cout<<"Witaj w grze"<<"\n 1.Zacznij Gre \n 2.Wyjdz z gry \n";
-    std::cin>>action;
-
-    std::cout<<"Wybrales: "<< action<<"\n";
-
-}

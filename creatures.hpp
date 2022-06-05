@@ -9,13 +9,14 @@ namespace creatures{
     };
 
     struct special_power{
+        special_power(std::string desc, int capacity);
+
         std::string desc;
-        int capacity;
+        int capacity{};
     };
 
     struct creature{
-        creature(std::string name, creature_type type, int strength, int skill, int health, special_power sp, int exp)
-                : name(std::move(name)), type(type), strength(strength), skill(skill), health(health), sp(std::move(sp)), exp(exp) {}
+        creature(std::string  name, creature_type type, int strength, int skill, int health, special_power  sp, int exp);
 
 
         std::string name;
@@ -27,12 +28,6 @@ namespace creatures{
         special_power sp;
         int exp;
 
-        auto attack(creature& target) const -> bool {
-            if( (std::rand() % 101) > target.skill ){
-                target.health-=strength;
-                return true;
-            }
-            else return false;
-        }
+        auto attack(creature& target) const -> bool;
     };
 }
