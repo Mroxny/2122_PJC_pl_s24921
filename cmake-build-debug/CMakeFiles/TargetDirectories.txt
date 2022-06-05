@@ -1,0 +1,3 @@
+C:/Users/maciu/Desktop/2122_PJC_pl_s24921/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/maciu/Desktop/2122_PJC_pl_s24921/cmake-build-debug/CMakeFiles/2122_PJC_pl_s24921.dir
+C:/Users/maciu/Desktop/2122_PJC_pl_s24921/cmake-build-debug/CMakeFiles/edit_cache.dir
