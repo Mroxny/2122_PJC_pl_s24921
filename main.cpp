@@ -1,11 +1,10 @@
 #include <iostream>
 #include <functional>
+#include <map>
 #include "creatures.hpp"
 #include "engine.hpp"
 
-auto fun() -> void {
-    std::cout<<"Fun3\n";
-}
+
 
 
 
@@ -29,14 +28,14 @@ int main() {
     std::cout<<"Creature 1, Health:"<<a.health<<" Skill:"<<a.skill<<"\n";
     std::cout<<"Creature 2, Health:"<<b.health<<" Skill:"<<b.skill<<"\n";
 
-    auto actions = std::vector<std::function<void()>>{
-        []()->void { std::cout<<"Fun1\n";},
-        []()->void { std::cout<<"Fun2\n";},
-        fun
-        };
 
+    auto map = std::map<std::string, std::function<void()>>{
+            {"Start", []()->void { std::cout<<"Fun1\n";}},
+            {"Options", []()->void { std::cout<<engine::getRandomNumber(1,5)<<"\n";}},
+            {"Quit", engine::fun}
+    };
 
-    engine::displayPanel("test",actions);
+    engine::displayPanel("test",map);
 
     return 0;
 }
