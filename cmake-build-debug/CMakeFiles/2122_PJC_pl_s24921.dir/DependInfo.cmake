@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/Projects/Custom Projects/2122_PJC_pl_s24921/creatures.cpp" "CMakeFiles/2122_PJC_pl_s24921.dir/creatures.cpp.obj" "gcc" "CMakeFiles/2122_PJC_pl_s24921.dir/creatures.cpp.obj.d"
   "D:/Projects/Custom Projects/2122_PJC_pl_s24921/engine.cpp" "CMakeFiles/2122_PJC_pl_s24921.dir/engine.cpp.obj" "gcc" "CMakeFiles/2122_PJC_pl_s24921.dir/engine.cpp.obj.d"
+  "D:/Projects/Custom Projects/2122_PJC_pl_s24921/game.cpp" "CMakeFiles/2122_PJC_pl_s24921.dir/game.cpp.obj" "gcc" "CMakeFiles/2122_PJC_pl_s24921.dir/game.cpp.obj.d"
   "D:/Projects/Custom Projects/2122_PJC_pl_s24921/main.cpp" "CMakeFiles/2122_PJC_pl_s24921.dir/main.cpp.obj" "gcc" "CMakeFiles/2122_PJC_pl_s24921.dir/main.cpp.obj.d"
   )
 

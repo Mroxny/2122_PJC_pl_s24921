@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/2122_PJC_pl_s24921.dir/creatures.cpp.obj.d"
   "CMakeFiles/2122_PJC_pl_s24921.dir/engine.cpp.obj"
   "CMakeFiles/2122_PJC_pl_s24921.dir/engine.cpp.obj.d"
+  "CMakeFiles/2122_PJC_pl_s24921.dir/game.cpp.obj"
+  "CMakeFiles/2122_PJC_pl_s24921.dir/game.cpp.obj.d"
   "CMakeFiles/2122_PJC_pl_s24921.dir/main.cpp.obj"
   "CMakeFiles/2122_PJC_pl_s24921.dir/main.cpp.obj.d"
   "lib2122_PJC_pl_s24921.dll.a"

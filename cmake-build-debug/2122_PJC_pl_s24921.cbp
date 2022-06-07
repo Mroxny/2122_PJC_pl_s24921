@@ -94,6 +94,12 @@
 		<Unit filename="D:/Projects/Custom Projects/2122_PJC_pl_s24921/engine.hpp">
 			<Option target="2122_PJC_pl_s24921"/>
 		</Unit>
+		<Unit filename="D:/Projects/Custom Projects/2122_PJC_pl_s24921/game.cpp">
+			<Option target="2122_PJC_pl_s24921"/>
+		</Unit>
+		<Unit filename="D:/Projects/Custom Projects/2122_PJC_pl_s24921/game.hpp">
+			<Option target="2122_PJC_pl_s24921"/>
+		</Unit>
 		<Unit filename="D:/Projects/Custom Projects/2122_PJC_pl_s24921/main.cpp">
 			<Option target="2122_PJC_pl_s24921"/>
 		</Unit>

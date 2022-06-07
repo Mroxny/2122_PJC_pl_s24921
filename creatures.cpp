@@ -4,15 +4,11 @@
 
 namespace creatures{
 
-
-    special_power::special_power(std::string desc, int capacity)
-        : desc(std::move(desc)), capacity(capacity) {}
-
+    special_power::special_power(std::string desc, int capacity, special_power_type type)
+        : desc(std::move(desc)), capacity(capacity), type(type) {}
 
     creature::creature(std::string  name, creature_type type, int strength, int skill, int health, special_power  sp, int exp)
-        : name(std::move(name)), type(type), strength(strength), skill(skill), health(health), sp(std::move(sp)), exp(exp) {
-
-    }
+        : name(std::move(name)), type(type), strength(strength), skill(skill), health(health), sp(std::move(sp)), exp(exp) {}
 
     auto creature::attack(creature &target) const -> bool {
         if( (engine::getRandomNumber(0,100)) > target.skill ){
@@ -22,4 +18,5 @@ namespace creatures{
         else return false;
 
     }
+
 }

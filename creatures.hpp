@@ -8,11 +8,16 @@ namespace creatures{
         water, stone, air, fire, ice, steal
     };
 
+    enum class special_power_type {
+            defensive, offensive
+    };
+
     struct special_power{
-        special_power(std::string desc, int capacity);
+        special_power(std::string desc, int capacity, special_power_type type);
 
         std::string desc;
-        int capacity{};
+        int capacity;
+        special_power_type type;
     };
 
     struct creature{
