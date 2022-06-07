@@ -29,13 +29,13 @@ int main() {
     std::cout<<"Creature 2, Health:"<<b.health<<" Skill:"<<b.skill<<"\n";
 
 
-    auto map = std::map<std::string, std::function<void()>>{
+    auto vec = std::vector<std::pair<std::string, std::function<void()>>>{
             {"Start", []()->void { std::cout<<"Fun1\n";}},
             {"Options", []()->void { std::cout<<engine::getRandomNumber(1,5)<<"\n";}},
-            {"Quit", engine::fun}
+            {"Exit", engine::fun}
     };
 
-    engine::displayPanel("test",map);
+    engine::displayPanel("test",vec);
 
     return 0;
 }

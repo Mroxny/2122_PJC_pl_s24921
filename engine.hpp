@@ -7,8 +7,8 @@
 
 namespace engine{
 
-    auto displayPanel(const std::string& fileName,const std::map<std::string, std::function<void()>>& actions) -> void;
-    auto displayInterface(const std::map<std::string, std::function<void()>>& actions) -> void;
-    auto getRandomNumber(int a, int b) -> int;
+    auto displayPanel(const std::string& fileName, const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void;
+    auto displayInterface(const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void;
+    auto getRandomNumber(int min, int max) -> int;
     auto fun() -> void;
 }
