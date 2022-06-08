@@ -1,5 +1,7 @@
 #include "game.hpp"
 #include "engine.hpp"
+#include <fstream>
+
 namespace game{
     auto mainMenu()->void{
         auto menu = std::vector<std::pair<std::string, std::function<void()>>>();
@@ -19,6 +21,10 @@ namespace game{
     }
 
     auto isSaveGameFileValid()->bool{
+        auto path = std::string("..\\TextFiles\\save_file.txt");
+        if(std::ifstream((path)).good()){
+            return true;
+        }
         return false;
     }
     auto loadGame()->void{
