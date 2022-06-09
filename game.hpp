@@ -8,6 +8,10 @@
 
 namespace game{
 
+    enum class difficulty_modes {
+        normal, hard
+    };
+
     struct entity{
         virtual auto make_move() -> void = 0;
 
@@ -15,11 +19,13 @@ namespace game{
     };
 
     struct player : entity{
-        std::vector<creatures::creature> team;
+        std::vector<creatures::creature> playerTeam;
 
         auto make_move() -> void override;
     };
     struct enemy : entity{
+        std::vector<creatures::creature> enemyTeam;
+
         auto make_move() -> void override;
     };
 
@@ -30,6 +36,7 @@ namespace game{
         int enemyId;
         std::unique_ptr<entity> player;
         std::unique_ptr<entity> currentEnemy;
+        difficulty_modes difficulty;
 
     };
 
@@ -40,6 +47,7 @@ namespace game{
     auto startNewGame()->void;
     auto exitGame()->void;
     auto info(std::function<void()> prevPanel)->void;
-
+    auto selectCreatures() -> void;
+    auto getCreatures() -> std::vector<creatures::creature>;
 }
 
