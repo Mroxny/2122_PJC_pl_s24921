@@ -34,6 +34,15 @@ namespace engine{
         }
         std::cout<<res<<"\n";
     }
+    auto writeBorder(char c, int size) ->std::string{
+        auto res = std::string();
+        for(int i = 0; i<size; i++){
+            res+=c;
+        }
+        res+="\n";
+        return res;
+    }
+
 
     auto displayInterface(const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void {
         displayBorder('-', 20);

@@ -1,14 +1,20 @@
 #include "game.hpp"
 #include "engine.hpp"
 #include <fstream>
+#include <utility>
 
 namespace game{
+
+    current_game currentGame;
+    player pl;
+
 
 
     auto mainMenu()->void{
         auto menu = std::vector<std::pair<std::string, std::function<void()>>>();
         if(isSaveGameFileValid()){
             menu = {{"LoadGame", []()->void{loadGame();}},
+                    {"StartNewGame", []()->void{startNewGame();}},
                     {"Info", []()->void{info(mainMenu);}},
                     {"Exit", []()->void{exitGame();}}};
         }
@@ -29,19 +35,20 @@ namespace game{
         }
         return false;
     }
+
     auto loadGame()->void{
         engine::clearScreen();
         std::cout<<"load Game\n";
         engine::sleep(2000);
     }
+
     auto startNewGame()->void{
         engine::clearScreen();
 
         std::cout<<"Starting new game...\n";
         engine::sleep(2000);
 
-        selectCreatures();
-
+        setDifficulty();
     }
 
     auto exitGame()->void{
@@ -59,6 +66,15 @@ namespace game{
         engine::displayPanel("info.txt", action);
     }
 
+    auto setDifficulty() -> void{
+        engine::clearScreen();
+        engine::displayPanel("difficulty.txt",{
+                {"Normal",[]() -> void{currentGame.difficulty = difficulty_modes::normal;}},
+                {"Hard",[]() -> void{currentGame.difficulty = difficulty_modes::hard;}}
+        });
+        selectCreatures();
+    }
+
     auto selectCreatures() -> void{
         auto vec = getCreatures();
 
@@ -66,32 +82,84 @@ namespace game{
 
         for(int i = 0; i<3; i++){
             engine::clearScreen();
+            std::cout<<"Select Creatures in your team:\n\n";
             auto creatures = std::string();
             for (int j = 0; j<vec.size(); j++){
                 engine::displayBorder('=',8);
 
-                creatures =  std::to_string(j+1)+". \n"+
-                            "Name: "+ vec[j].name+"\n"+
-                            "Type: "+ creatures::creature_type_values[vec[j].type]+"\n"+
-                            "Strength: "+ std::to_string(vec[j].strength)+"\n"+
-                            "Health: "+ std::to_string(vec[j].health)+"\n"+
-                            "Special Power: "+vec[j].sp.name+"\n";
+                creatures =  std::to_string(j+1)+". \n"+ writeCreatureStats(vec[j]);
                 std::cout<<creatures;
 
             }
             engine::displayBorder('=',8);
             int selected;
-            std::cout<<"Select your creature no."<<(i+1)<<": ";
-            std::cin>>selected;
+
+            do{
+                std::cout<<"Write number from 1 to "<<vec.size()<<": ";
+                std::cin>>selected;
+                if(selected < 1 || selected > vec.size() || !std::cin.good()){
+                    std::cout<<"Wrong option\n";
+                    selected = 0;
+                }
+            }while(selected < 1 || selected > vec.size() || !std::cin.good());
+
             team.push_back(vec[selected-1]);
             vec.erase(vec.begin()+(selected-1));
         }
 
-        for(const auto& e : team){
-            std::cout<<e.name<<"\n";
-        }
+        acceptCreatures(team);
+    }
 
-        engine::sleep(10000);
+    auto acceptCreatures(std::vector<creatures::creature> team) -> void{
+        auto s = std::string("This is your team:\n");
+
+        for(auto & i : team){
+            s+=engine::writeBorder('~', 10);
+            s+= writeCreatureStats(i);
+        }
+        s+=engine::writeBorder('~', 10);
+
+
+        engine::clearScreen();
+        engine::displaySimplePanel(s,{
+                {"Accept", [&team]() -> void{pl.setTeam(team); begin();}},
+                {"SelectAgain", selectCreatures},
+
+        });
+
+    }
+
+    auto begin() -> void{
+        engine::clearScreen();
+        showCurrentRound();
+        engine::sleep(3000);
+        startFight(generateNextEnemy());
+    }
+
+    auto showCurrentRound() -> void{
+        std::cout<<"Round: "<<currentGame.round<<"\n";
+    }
+
+    auto generateNextEnemy() -> enemy{
+        return {"Zbyszek",getCreatures()[3]};
+    }
+
+    auto startFight(enemy en) -> void{
+        auto s = "You fight with " + en.eName + " and his creature: \n";
+        s+= writeCreatureStats(en.eCreature);
+
+        engine::clearScreen();
+        engine::displaySimplePanel(s,{
+                {"Attack", [&en]() -> void{pl.playerTeam[0].attack(en.eCreature);}},
+                {"Leave", mainMenu},
+
+        });
+        engine::clearScreen();
+        std::cout<<"Enemy health: "<<en.eCreature.health;
+        engine::sleep(3000);
+        engine::clearScreen();
+
+
     }
 
     auto getCreatures() -> std::vector<creatures::creature>{
@@ -111,5 +179,26 @@ namespace game{
 
     }
 
+    auto writeCreatureStats(const creatures::creature& c) -> std::string{
+        auto s= "Name: "+ c.name+"\n"+
+                "Type: "+ creatures::creature_type_values[c.type]+"\n"+
+                "Strength: "+ std::to_string(c.strength)+"\n"+
+                "Health: "+ std::to_string(c.health)+"\n"+
+                "Special Power: "+c.sp.name+" ("+
+                creatures::special_power_type_values[c.sp.type]+") - "+c.sp.desc+"\n";
+        return s;
+    }
 
+
+    auto player::addCreature(const creatures::creature& c) -> void {
+        playerTeam.push_back(c);
+    }
+
+    auto player::setTeam(std::vector<creatures::creature> team) -> void {
+        playerTeam = std::move(team);
+    }
+
+    enemy::enemy(std::string name, creatures::creature creature): eName(std::move(name)), eCreature(std::move(creature)) {
+
+    }
 }

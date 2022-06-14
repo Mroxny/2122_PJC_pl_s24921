@@ -10,6 +10,8 @@ namespace engine{
 
     auto displayFile(const std::string& path) -> void;
     auto displayBorder(char c, int size) ->void;
+    auto writeBorder(char c, int size) ->std::string;
+
     auto displayInterface(const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void;
     auto displayPanel(const std::string& fileName, const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void;
     auto displaySimplePanel(const std::string& header, const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void;

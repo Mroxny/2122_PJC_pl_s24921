@@ -8,34 +8,34 @@
 
 namespace game{
 
+
     enum class difficulty_modes {
         normal, hard
     };
 
-    struct entity{
-        virtual auto make_move() -> void = 0;
+    struct player{
 
-        virtual ~entity() = default;
-    };
-
-    struct player : entity{
         std::vector<creatures::creature> playerTeam;
+        int currentCreature;
 
-        auto make_move() -> void override;
+        auto addCreature(const creatures::creature& c) -> void;
+        auto setTeam(std::vector<creatures::creature> team) -> void;
+
     };
-    struct enemy : entity{
-        std::vector<creatures::creature> enemyTeam;
 
-        auto make_move() -> void override;
+    struct enemy{
+        enemy(std::string name, creatures::creature creature);
+
+        std::string eName;
+        creatures::creature eCreature ;
     };
 
     struct current_game{
 
-        int currentTour;
-        int round;
-        int enemyId;
-        std::unique_ptr<entity> player;
-        std::unique_ptr<entity> currentEnemy;
+        int currentTour = 1;
+        int round = 1;
+        int enemyId = 0;
+
         difficulty_modes difficulty;
 
     };
@@ -47,7 +47,16 @@ namespace game{
     auto startNewGame()->void;
     auto exitGame()->void;
     auto info(std::function<void()> prevPanel)->void;
+    auto setDifficulty() -> void;
     auto selectCreatures() -> void;
+    auto acceptCreatures(std::vector<creatures::creature> team) -> void;
     auto getCreatures() -> std::vector<creatures::creature>;
+    auto writeCreatureStats(const creatures::creature& c) -> std::string;
+    auto begin() -> void;
+    auto showCurrentRound() -> void;
+    auto generateNextEnemy() -> enemy;
+    auto startFight(enemy en) -> void;
+
+
 }
 
