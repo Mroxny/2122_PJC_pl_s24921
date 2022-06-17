@@ -21,33 +21,56 @@ namespace creatures{
 
 
     struct special_power{
-        special_power(std::string name,std::string desc, int capacity, special_power_type type, std::function<void()> sp_body);
+        special_power(std::string name,std::string desc, std::string effect ,int capacity, special_power_type type, std::function<void()> sp_body);
 
         std::string name;
         std::string desc;
+        std::string effect;
+
+
         int capacity;
+        int maxCapacity;
+
         special_power_type type;
-        float multiplier = 1;
         std::function<void()> sp_body;
     };
 
     struct creature{
-        creature(std::string  name, creature_type type, int strength, int skill, int health, special_power  sp, int exp, int expLimit);
+        creature(std::string  name, creature_type type, int strength, int skill, int health, special_power  sp, int expFroWin, int expLimit);
 
 
         std::string name;
         creature_type type;
 
         int strength;
+        int maxStrength;
+
         int skill;
+
         int health;
+        int maxHealth;
+
         special_power sp;
-        int exp;
+
+        int expFroWin;
         int expLimit;
         int currentExp = 0;
-        int currentLevel = 0;
+        int currentLevel = 1;
 
 
-        auto attack(creature& target) const -> bool;
+        auto attack(creature& target) -> int;
+        auto takeDamage(creature& target, int damage) -> int;
+
+        auto heal(int hp) -> void;
+        auto heal() -> void;
+
+
+        auto addEXP(int earnedEXP) -> void;
+        auto upgrade() -> bool;
+        auto levelUp(int levels) -> void;
+
+
+
+
     };
 }

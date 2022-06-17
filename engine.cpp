@@ -6,6 +6,10 @@
 namespace engine{
 
     auto HELP_FILE_PATH = std::string("help.txt");
+    auto COMMAND_MSG_1 = std::string("Write option: ");
+    auto COMMAND_MSG_2 = std::string("Unknown command\n");
+    auto afterK = false;
+
 
     auto isStringNumber(const std::string& str) -> bool{
         for (char i: str)
@@ -55,7 +59,7 @@ namespace engine{
         do{
             found = true;
             auto option=std::string();
-            std::cout<< "Write option: ";
+            std::cout<< COMMAND_MSG_1;
             std::cin >> option;
 
             auto it = std::find_if( actions.begin(), actions.end(),
@@ -74,9 +78,32 @@ namespace engine{
                 found = false;
                 displayFile(HELP_FILE_PATH);
             }
+            else if(option == "UUDDLRLRBASTART" ||
+                    option == "KonamiCode"){
+                if(!afterK){
+                    std::cout<<"All your base are belong to us!\n";
+
+                    sleep(1000);
+
+                    COMMAND_MSG_1 = "WOLOLO? ";
+                    COMMAND_MSG_2 = "Przed wyruszeniem w droge nalezy zebrac druzyne  \n";
+
+                }
+                else{
+                    std::cout<<"ZARAZA!\n";
+
+                    sleep(1000);
+
+                    COMMAND_MSG_1 = "Write option: ";
+                    COMMAND_MSG_2 = "Unknown command\n";
+                }
+                afterK = !afterK;
+                found = false;
+
+            }
             else {
                 found = false;
-                std::cout<<"Unknown command\n";
+                std::cout<<COMMAND_MSG_2;
             }
         }while (!found);
 
