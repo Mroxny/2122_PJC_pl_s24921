@@ -1,0 +1,20 @@
+
+|\  | /~~\ |~~\|\  /|  /\  |   
+| \ ||    ||__/| \/ | /__\ |  o
+|  \| \__/ |  \|    |/    \|__o
+                          
+	- 4 enemies per round
+	- 4 rounds
+	- normal damage from opponents
+
+
+
+|  |  /\  |~~\|~~\  
+|--| /__\ |__/|   |o
+|  |/    \|  \|__/ o
+                
+	- 5 enemies per round
+	- 5 rounds
+	- more damage from opponents  
+	- opponents have more HP          
+	

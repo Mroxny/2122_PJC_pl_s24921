@@ -42,10 +42,12 @@ namespace game{
 
     auto mainMenu()->void;
     auto saveGame()->void;
+    auto destroySaveFile()->void;
     auto isSaveGameFileValid()->bool;
     auto loadGame()->void;
     auto startNewGame()->void;
     auto exitGame()->void;
+    auto gameOver()->void;
     auto info(std::function<void()> prevPanel)->void;
     auto setDifficulty() -> void;
     auto selectCreaturesInTeam() -> void;
@@ -59,6 +61,7 @@ namespace game{
     auto generateNextEnemy(int round) -> enemy;
     auto startFight(enemy& en) -> void;
     auto fight(enemy& en) -> void;
+    auto checkSpecialPowers(enemy& en) -> void;
     auto attackEnemy(enemy& en) -> void;
     auto useAbility(enemy& en) -> void;
     auto upgradeCreature(enemy& en) -> void;

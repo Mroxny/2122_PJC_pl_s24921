@@ -1,2 +1,29 @@
 This is a "help" file
-WIP
+
+The rules are simple.
+First, choose six creatures.
+Each of the creatures has its own attributes and special powers:
+    - HP - the health of the creature
+    - Strength - determines how much damage a creature can deal
+    - Skill - Defines the percentage of avoiding an attack
+Then start the fight with the opponent.
+You only have one move for each turn:
+    - Attack
+    - Use of a special ability
+    - Character upgrade
+    - Change the Current Creation
+
+Different types of characters interact differently:
+
+	| water | stone | air | fire | ice | steal |
+	--------------------------------------------
+water |    -	    +             +
+stone |                    -      +     +      +
+air   |  	    -			+      -
+fire  |	   -   	    -			+      +
+ice   |    -        +             -     -
+steal |	   +               +      -            -
+
+	
+		(+) increased efficiency
+		(-) reduced efficiency

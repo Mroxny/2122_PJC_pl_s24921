@@ -1,3 +1,7 @@
 Thanks for playing Creatures The Game.
 
-more info...
+Creatures The game was created as a project at the university.
+
+Enter "-h" or "-help" to learn more about the game
+
+Enter the Konami Code to see the easter egg

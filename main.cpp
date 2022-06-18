@@ -1,9 +1,7 @@
 #include "game.hpp"
 
-int main() {
-
+auto main() -> int{
     game::mainMenu();
-
     return 0;
 }
 

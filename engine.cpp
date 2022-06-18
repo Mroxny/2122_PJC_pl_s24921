@@ -11,6 +11,10 @@ namespace engine{
     auto afterK = false;
 
 
+    /**
+     *
+     * @return returns true if the given string is a positive number
+     */
     auto isStringNumber(const std::string& str) -> bool{
         for (char i: str)
             if (i < '0' || i > '9') {
@@ -27,10 +31,16 @@ namespace engine{
             auto line = std::string();
 
             while (std::getline(file, line)) std::cout<<line<<"\n";
+            file.close();
         }
         else std::cout<<"File is missing!\n";
     }
 
+    /**
+     * Draws a border based on two parameters
+     * @param c - char that is used to draw a border
+     * @param size - size of a border
+     */
     auto displayBorder(char c, int size) ->void {
         auto res = std::string();
         for(int i = 0; i<size; i++){
@@ -109,11 +119,21 @@ namespace engine{
 
     }
 
+    /**
+     * Displays a file, then prompts the user for the action to be performed
+     * @param fileName - name of file to read from.
+     * @param actions - functions that program will execute after choice
+     */
     auto displayPanel(const std::string& fileName,const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void{
         displayFile(fileName);
         displayInterface(actions);
     }
 
+    /**
+     * Displays a header, then prompts the user for the action to be performed
+     * @param header - string to display as header
+     * @param actions - functions that program will execute after choice
+     */
     auto displaySimplePanel(const std::string& header, const std::vector<std::pair<std::string, std::function<void()>>>& actions) -> void{
         std::cout<<header<<"\n";
         displayInterface(actions);
@@ -123,6 +143,9 @@ namespace engine{
         system("CLS");
     }
 
+    /**
+     * freezes the program for the given number of milliseconds
+     */
     auto sleep(int milliseconds) -> void{
         std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
     }

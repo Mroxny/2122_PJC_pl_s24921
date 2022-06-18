@@ -19,20 +19,25 @@ namespace creatures{
 
     extern std::map<special_power_type,std::string> special_power_type_values;
 
+    struct creature;
+    struct special_power;
+
 
     struct special_power{
-        special_power(std::string name,std::string desc, std::string effect ,int capacity, special_power_type type, std::function<void()> sp_body);
+        special_power(std::string name,std::string desc, std::string effect ,int capacity, int duration, special_power_type type, std::function<void(creature& owner,creature& target)> sp_body);
 
         std::string name;
         std::string desc;
         std::string effect;
 
-
         int capacity;
         int maxCapacity;
 
+        int duration;
+        int endTurn;
+
         special_power_type type;
-        std::function<void()> sp_body;
+        std::function<void(creature& owner,creature& target)> sp_body;
     };
 
     struct creature{
@@ -47,12 +52,16 @@ namespace creatures{
 
         int skill;
 
+        float defMultiplier = 1;
+        float offMultiplier = 1;
+
+
         int health;
         int maxHealth;
 
         special_power sp;
 
-        int expFroWin;
+        int expForWin;
         int expLimit;
         int currentExp = 0;
         int currentLevel = 1;
@@ -68,9 +77,6 @@ namespace creatures{
         auto addEXP(int earnedEXP) -> void;
         auto upgrade() -> bool;
         auto levelUp(int levels) -> void;
-
-
-
 
     };
 }
